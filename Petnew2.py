@@ -1,4 +1,8 @@
+# Моє звірятко
+
+
 class Pet:
+    """Віртуальниц  вихованець"""
     total = 0
 
     def __pass_time(self):
@@ -59,18 +63,49 @@ class Pet:
         self.__pass_time()
 
     def __str__(self):
-        ans = "Об'єкт класу Pet\n"
-        ans += "Ім'я: " + self.name + "\n"
-        return ans
+        return f"{self.name}({self.hunger=}, {self.boredom=})"
 
 def main():
-    print("Створення звірят.")
-    pet1 = Pet("Звірятко 1")
-    #pet2 = Pet("Звірятко 2")
-    #pet3 = Pet("Звірятко 3")
+    pet_name = input("Як ви назвете своє звірятко?: ")
+    pet = Pet(pet_name)
 
-    Pet.status()
+    choice = None
+    while choice != "0":
+        print \
+        ("""
+         Моє звірятко
+         
+         0 - Вийти
+         1 - Дізнатися про самопочуття звірятка
+         2 - Годувати звірятко
+         3 - Пограти зі звірятком
+         """)
+        
+        choice = input("Ваш вибір: ")
+        print()
 
-    print("Доступ до властивості об'єкта:", pet1.mood)
+        # Вихід
+        if choice == "0":
+            print("До побачення.")
+
+        # Бесіда зі звіртком
+        elif choice == "1":
+            pet.talk()
+
+        # Годування звірятка
+        elif choice == "2":
+            pet.eat(int(input("Скількі шматочків буде: ")))
+
+        # Гра зі звірятком
+        elif choice == "3":
+            pet.play(int(input("Скільки часу пограємось:")))
+        
+        # Секретний пункт
+        elif choice =="7":
+            print(pet)
+
+        # Незрозуміле введення користувача
+        else:
+            print("Вибачте, у мене немає пункту", choice)
 
 main()
